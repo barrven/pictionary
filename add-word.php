@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <title>Add Word</title>
 </head>
 
@@ -13,44 +14,31 @@
     <h1>Enter a custom word</h1>
 
     <div class="select-panel">
-        <form action="add-word.php" method="post" id="form">
+        <form method="post" id="form">
             <table>
                 <tr>
                     <td><input id="inputBox" name="newWord" class="input-box"></td>
                     <td><button id="btnSubmit" class="button" onclick="validateInput">Submit</button></td>
+                    <input name="submitted" hidden value="true">
                 </tr>
             </table>
         </form>
     </div>
 
-    <div class="display">
-        <?php
-        if (isset($_POST['newWord'])) {
-            $word = $_POST['newWord'];
-            $fp = fopen('data/customWords.csv', 'a'); //opens file in append mode  
-            fwrite($fp, "$word\r\n");
-            fclose($fp);
+    <div class="display" id="msgDisplay"></div>
 
-            echo "You successfully added the word:<br> <span class='added-word'>$word</span>";
-
-            $_POST = array();
-        }
-
-        ?>
+    <div class="btn-holder">
+        <button class="btn-clear" hidden id="btnUndo">Undo</button>
     </div>
 
     <script>
-
-        //clear the form data so that it doesn't get sent again
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
-        }
+        const msgDisplay = document.getElementById('msgDisplay')
         const btnSubmit = document.getElementById('btnSubmit')
         const inputBox = document.getElementById('inputBox')
         const form = document.getElementById('form')
-
         form.addEventListener('submit', validateInput)
-        
+        const btnUndo = document.getElementById('btnUndo')
+        btnUndo.addEventListener('click', undoAdd)
 
         function validateInput(event) {
             event.preventDefault()
@@ -59,7 +47,27 @@
                 return
             }
 
-            form.submit()
+            sendData()
+        }
+
+        function sendData() {
+            $.ajax({
+                url: "add-custom-words.php", //the page containing php script
+                type: "post", //request type,
+                dataType: 'json',
+                data: {
+                    newWord: inputBox.value,
+                },
+                success: function(result) {
+                    console.log(result.msg);
+                    msgDisplay.innerHTML = `You successfully added the word:<br> <span class='added-word'>${result.msg}</span>`
+                    btnUndo.hidden = false
+                }
+            });
+        }
+
+        function undoAdd() {
+            console.log('undo!')
         }
     </script>
 </body>

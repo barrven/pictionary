@@ -86,9 +86,13 @@ table{
 
 }
 
-#btn-holder{
+.btn-holder{
     margin-top: 15px;
     text-align: center;
+}
+
+#btnUndo{
+    width: 100px;
 }
 
 .input-box {

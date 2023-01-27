@@ -37,7 +37,7 @@
 
     <div class="display" id="display"></div>
 
-    <div id="btn-holder">
+    <div class="btn-holder">
         <a href="add-word.php" target="_blank" class="button-link">
             Add a Custom Word
         </a>
