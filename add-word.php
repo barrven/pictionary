@@ -17,6 +17,7 @@
         <form method="post" id="form">
             <table>
                 <tr>
+                    <td><a class="button-link" href="index.php">&lt; Back</a></td>
                     <td><input id="inputBox" name="newWord" class="input-box"></td>
                     <td><button id="btnSubmit" class="button" onclick="validateInput">Submit</button></td>
                     <input name="submitted" hidden value="true">
@@ -77,8 +78,8 @@
                     msgDisplay.innerHTML = `word removed:<br> <span class='added-word'>${result.msg}</span>`
                     btnUndo.hidden = true
                     inputBox.value = ''
-                    setInterval(()=>{
-                        msgDisplay.innerHTML =''
+                    setInterval(() => {
+                        msgDisplay.innerHTML = ''
                     }, 3000)
                 }
             });

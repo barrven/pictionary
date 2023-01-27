@@ -38,7 +38,7 @@
     <div class="display" id="display"></div>
 
     <div class="btn-holder">
-        <a href="add-word.php" target="_blank" class="button-link">
+        <a href="add-word.php" class="button-link">
             Add a Custom Word
         </a>
         <button class="btn-clear" onclick="clearCustomWords()">Clear custom words</button>
