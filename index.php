@@ -59,7 +59,10 @@
 
 
         function clearCustomWords() {
- 
+            let res = confirm('Are you sure you want to clear the custom word list?')
+            if(!res){
+                return
+            }
             $.ajax({
                 url: "clear-custom-words.php", //the page containing php script
                 type: "post", //request type,

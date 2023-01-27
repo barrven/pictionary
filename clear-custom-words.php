@@ -1,6 +1,6 @@
 <?php
 
-file_put_contents("customWords.csv", "");
+file_put_contents("data/customWords.csv", "");
 echo json_encode(array("msg" => 'successfuly cleared'));
 
 ?>
