@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pictionary Word Generator</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 </head>
 
@@ -40,11 +41,14 @@
         <a href="add-word.php" target="_blank" class="button-link">
             Add a Custom Word
         </a>
+        <button class="btn-clear" onclick="clearCustomWords()">Clear custom words</button>
     </div>
 
-    <?php
-    require "dataConnector.php"
 
+
+    <?php
+    require "dataConnector.php";
+    //require "clear-custom-words.php";
     ?>
 
     <script>
@@ -52,9 +56,24 @@
         const mediumWords = [<?php echo $medium ?>];
         const hardWords = [<?php echo $hard ?>];
         const customWords = [<?php echo $custom ?>];
+
+
+        function clearCustomWords() {
+ 
+            $.ajax({
+                url: "clear-custom-words.php", //the page containing php script
+                type: "post", //request type,
+                dataType: 'json',
+                success: function(result) {
+                    console.log(result.msg);
+                }
+            });
+            
+        }
     </script>
     <!-- <script src="loadData.js"></script> -->
     <script src="app.js"></script>
+
 </body>
 
 </html>

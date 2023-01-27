@@ -76,9 +76,9 @@ table{
     background-color: #0D6EFD;
     color: white;
     /* padding: 2px 6px 2px 6px; */
-    padding: 6px;
+    padding: 9px;
     border: 1px solid black;
-    height: 35px;
+    /* height: 40px; */
     margin: 2px;
 }
 
@@ -112,4 +112,19 @@ table{
 .display-word{
     font-size: larger;
     font-weight: bold;
+}
+
+.btn-bottom {
+    width: 200px;
+    bottom: 10px;
+    position: absolute;
+    text-align: center;
+}
+
+.btn-clear{
+    height: 35px;
+    background-color: #DC3545;
+    color: white;
+    border: 1px solid black;
+    padding: 9px;
 }
