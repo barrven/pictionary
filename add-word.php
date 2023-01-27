@@ -68,6 +68,20 @@
 
         function undoAdd() {
             console.log('undo!')
+            $.ajax({
+                url: "remove-last-word.php", //the page containing php script
+                type: "post", //request type,
+                dataType: 'json',
+                success: function(result) {
+                    console.log(result.msg);
+                    msgDisplay.innerHTML = `word removed:<br> <span class='added-word'>${result.msg}</span>`
+                    btnUndo.hidden = true
+                    inputBox.value = ''
+                    setInterval(()=>{
+                        msgDisplay.innerHTML =''
+                    }, 3000)
+                }
+            });
         }
     </script>
 </body>
