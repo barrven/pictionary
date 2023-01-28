@@ -13,10 +13,10 @@
 <body>
     <h1>Enter a custom word</h1>
 
-    <div class="select-panel">
+    <div class="select-panel main-parent">
         <form method="post" id="form">
-            <table>
-                <tr>
+            <table class="control-table">
+                <tr class="control-row">
                     <td><a class="button-link" href="index.php">&lt; Back</a></td>
                     <td><input id="inputBox" name="newWord" class="input-box"></td>
                     <td><button id="btnSubmit" class="button" onclick="validateInput">Submit</button></td>
@@ -47,8 +47,8 @@
                 alert('You can\'t submit empty values')
                 return
             }
-
             sendData()
+            inputBox.value = ''
         }
 
         function sendData() {

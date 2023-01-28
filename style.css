@@ -14,7 +14,7 @@ h1{
 
 .select-panel, .display{
     margin: auto;
-    width: 80%;
+    /* width: 80%; */
     text-align: center;
     padding: 20px;
     background-color: white;
@@ -48,7 +48,7 @@ table{
 
 #level{
     /* border-radius: 5%; */
-    width: 100px;
+    /* width: 100px; */
 }
 
 .dropdown-label{
@@ -60,6 +60,9 @@ table{
     padding: 7px;
     vertical-align: text-bottom;
     font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+
 }
 
 .display{
@@ -80,6 +83,8 @@ table{
     border: 1px solid black;
     /* height: 40px; */
     margin: 2px;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .button-link:hover{
@@ -131,4 +136,12 @@ table{
     color: white;
     border: 1px solid black;
     padding: 9px;
+}
+
+.control-row {
+    width: 100%;
+}
+
+.main-parent{
+
 }
