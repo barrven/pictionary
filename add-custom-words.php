@@ -3,7 +3,8 @@
         $word = $_POST['newWord'];
         
         if(isDuplicate($word)){
-            echo json_encode(array("msg" => "Could not add '$word'. This entry is already on the list."));
+            //returns result to the calling page
+            echo json_encode(array("success"=>false, "word"=>$word));
             exit();
         }
         
@@ -11,7 +12,8 @@
         fwrite($fp, "$word\r\n");
         fclose($fp);
 
-        echo json_encode(array("msg" => "$word"));
+        //returns result to the calling page
+        echo json_encode(array("success"=>true, "word"=>$word));
     }
 
     function isDuplicate($word){

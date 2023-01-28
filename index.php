@@ -44,12 +44,7 @@
         <button class="btn-clear" onclick="clearCustomWords()">Clear custom words</button>
     </div>
 
-
-
-    <?php
-    require "dataConnector.php";
-    //require "clear-custom-words.php";
-    ?>
+    <?php require "dataConnector.php"; ?>
 
     <script>
         const easyWords = [<?php echo $easy ?>];
@@ -60,21 +55,21 @@
 
         function clearCustomWords() {
             let res = confirm('Are you sure you want to clear the custom word list?')
-            if(!res){
-                return
-            }
+            if (!res) return
+
             $.ajax({
                 url: "clear-custom-words.php", //the page containing php script
                 type: "post", //request type,
                 dataType: 'json',
                 success: function(result) {
-                    console.log(result.msg);
+                    if (result.success) {
+                        customWords = []
+                    }
                 }
             });
-            
+
         }
     </script>
-    <!-- <script src="loadData.js"></script> -->
     <script src="app.js"></script>
 
 </body>

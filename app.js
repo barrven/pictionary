@@ -9,6 +9,11 @@ const display = document.getElementById('display')
 function displayWord() {
     let level = levelSelect.value
     const word = getWord(level)
+    
+    if(word === undefined) {
+        display.innerHTML = `<span class="display-word">The list for "${level}" is empty</span>`
+        return
+    }
     display.innerHTML = `<span class="display-word">${word}</span>`
 }
 

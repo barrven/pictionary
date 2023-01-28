@@ -4,10 +4,6 @@
     $hard = convertToJson(file('data/hardWords.csv'));
     $custom = convertToJson(file('data/customWords.csv'));
 
-
-    // echo convertToJson($easy);
-    // convertToJson($medium);
-
     function convertToJson($arr){
         $temp = "";
         foreach($arr as $line){

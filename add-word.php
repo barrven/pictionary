@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Add Word</title>
 </head>
 
@@ -17,10 +18,14 @@
         <form method="post" id="form">
             <table class="control-table">
                 <tr class="control-row">
-                    <td><a class="button-link" href="index.php">&lt; Back</a></td>
+                    <td>
+                        <a class="button-link" href="index.php">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i> Back
+                        </a>
+                    </td>
                     <td><input id="inputBox" name="newWord" class="input-box"></td>
                     <td><button id="btnSubmit" class="button" onclick="validateInput">Submit</button></td>
-                    <input name="submitted" hidden value="true">
+                    <!-- <input name="submitted" hidden value="true"> -->
                 </tr>
             </table>
         </form>
@@ -41,6 +46,12 @@
         const btnUndo = document.getElementById('btnUndo')
         btnUndo.addEventListener('click', undoAdd)
 
+        inputBox.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                validateInput(event)
+            }
+        })
+
         function validateInput(event) {
             event.preventDefault()
             if (inputBox.value === '') {
@@ -60,9 +71,15 @@
                     newWord: inputBox.value,
                 },
                 success: function(result) {
-                    console.log(result.msg);
-                    msgDisplay.innerHTML = `You successfully added the word:<br> <span class='added-word'>${result.msg}</span>`
-                    btnUndo.hidden = false
+                    // console.log(result.success);
+                    if (result.success) {
+                        msgDisplay.innerHTML = `You successfully added the word:<br> <span class='added-word'>${result.word}</span>`
+                        btnUndo.hidden = false
+                        return
+                    }
+
+                    msgDisplay.innerHTML = `Error, this entry is already on the list:<br> <span class='added-word'>${result.word}</span>`
+
                 }
             });
         }
