@@ -55,9 +55,16 @@
         function validateInput(event) {
             event.preventDefault()
             if (inputBox.value === '') {
-                alert('You can\'t submit empty values')
+                alert('Please type a word before clicking Submit')
                 return
             }
+
+            const alphanumeric = /^[A-Za-z\s]*$/
+            if (!inputBox.value.match(alphanumeric)) {
+                alert('Word must contain only letters, numbers, and/or spaces')
+                return
+            }
+
             sendData()
             inputBox.value = ''
         }
@@ -78,7 +85,8 @@
                         return
                     }
 
-                    msgDisplay.innerHTML = `Error, this entry is already on the list:<br> <span class='added-word'>${result.word}</span>`
+                    //response if not successful
+                    msgDisplay.innerHTML = `${result.msg}:<br> <span class='added-word'>${result.word}</span>`
 
                 }
             });
